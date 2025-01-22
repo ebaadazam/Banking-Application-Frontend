@@ -1,23 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SocialCards from "./SocialCards";
 const CardDetail = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-
-
-  const handleDeposit = () => {
-    console.log("Deposit button clicked");
-    // Add your deposit functionality here
-  };
-
-  const handleWithdraw = () => {
-    console.log("Withdraw button clicked");
-    // Add your withdraw functionality here
-  };
 
   useEffect(() => {
     console.log("Received ID: ", id);
@@ -61,7 +49,6 @@ const CardDetail = () => {
             className="w-36 h-36 z-40 border-4 border-white rounded-full group-hover:border-8 group-hover:transition-all group-hover:duration-300 transition-all duration-300"
           />
 
-
           {/* Animated Lines */}
           <div className="absolute top-4 w-full h-[6px] bg-[#58b0e0] transition-all duration-300 group-hover:w-[1%]" />
           <div className="absolute bottom-4 w-full h-[6px] bg-[#58b0e0] transition-all duration-300 group-hover:w-[1%]" />
@@ -70,7 +57,6 @@ const CardDetail = () => {
           <div className="absolute bg-blue-900 z-10 w-full h-full  transition-all duration-300 delay-700 group-hover:scale-[1.1] group-hover:delay-0" />
         </div>
       </div>
-
 
       {userData ? (
         <>
@@ -140,30 +126,30 @@ const CardDetail = () => {
           </div>
           <SocialCards />
 
-            {/* Buttons Section */}
-            <div className="flex gap-4 ">
-            <button
-              onClick={handleDeposit}
-              className="px-6 py-2 bg-blue-900 text-white font-semibold rounded-md hover:bg-green-600 transition-all"
-            >
-              Deposit
-            </button>
-            <button
-              onClick={handleWithdraw}
-              className="px-6 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition-all"
-            >
-              Withdraw
-            </button>
+          {/* Buttons Section */}
+          <div className="flex gap-4 ">
+            <Link to={`/account/details/${id}/deposit`}>
+              <button
+                className="px-6 py-2 bg-blue-900 text-white font-semibold rounded-md hover:bg-blue-400 transition-all"
+              >
+                Deposit
+              </button>
+            </Link>
+
+            <Link to={`/account/details/${id}/withdraw`}>
+              <button
+                className="px-6 py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-300 transition-all"
+              >
+                Withdraw
+              </button>
+            </Link>
           </div>
         </>
-        ) : (
+      ) : (
         <p>No user data available.</p>
       )
       }
       <hr className="w-full group-hover:h-5 h-3 bg-[#58b0e0] group-hover:transition-all group-hover:duration-300 transition-all duration-300" />
-    
-    
-    
     </div>
   );
 }

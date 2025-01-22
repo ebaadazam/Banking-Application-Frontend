@@ -141,48 +141,12 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li>
-                            <div className="relative group">
-                                <a
-                                    href="#"
-                                    onClick={(e) => e.preventDefault()}
-                                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-900 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                >
-                                    Services
-                                </a>
-
-                                {/* Dropdown Menu */}
-                                <div className="absolute hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded mt-2 z-50">
-                                    <ul className="py-2">
-                                        <li>
-                                            <a
-                                                href="/services/deposit"
-                                                className="block px-4 py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                            >
-                                                Deposit
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="/services/withdraw"
-                                                className="block px-4 py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                            >
-                                                Withdraw
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <li>
-
-                                </li>
-
-                            </div>
 
                         </li>
                     </ul>
                     <a
                         href="/contact"
-                        className="block py-2 px-5 ml-6 font-semibold text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-900 md:p-0 md:dark:hover:text-blue-900 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                        className="block py-2 px-5 ml-1 font-semibold text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-900 md:p-0 md:dark:hover:text-blue-900 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                     >
                         Contact
                     </a>

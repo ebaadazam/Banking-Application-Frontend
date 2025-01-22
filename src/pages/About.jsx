@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function About() {
@@ -9,9 +10,9 @@ export default function About() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">About Us</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Welcome to our Banking Application! We are dedicated to redefining banking by 
-              providing secure, efficient, and innovative financial solutions that empower 
-              individuals and businesses to achieve their financial goals. 
+              Welcome to our Banking Application! We are dedicated to redefining banking by
+              providing secure, efficient, and innovative financial solutions that empower
+              individuals and businesses to achieve their financial goals.
             </p>
           </div>
 
@@ -19,9 +20,9 @@ export default function About() {
             <div className="w-full md:w-1/2 text-center md:text-left">
               <h3 className="text-3xl font-semibold text-gray-800 mb-4">Our Mission</h3>
               <p className="text-lg text-gray-600">
-                Our mission is to create a seamless and secure banking experience by leveraging 
-                cutting-edge technology. We strive to ensure financial inclusion, offering 
-                personalized solutions to cater to every individual's and business's unique 
+                Our mission is to create a seamless and secure banking experience by leveraging
+                cutting-edge technology. We strive to ensure financial inclusion, offering
+                personalized solutions to cater to every individual's and business's unique
                 needs.
               </p>
             </div>
@@ -43,7 +44,7 @@ export default function About() {
                 </div>
                 <h4 className="text-xl font-semibold text-gray-800 mb-2">Security</h4>
                 <p className="text-lg text-gray-600">
-                  Your trust is our priority. We ensure your data and transactions are 
+                  Your trust is our priority. We ensure your data and transactions are
                   safeguarded with advanced security protocols.
                 </p>
               </div>
@@ -53,7 +54,7 @@ export default function About() {
                 </div>
                 <h4 className="text-xl font-semibold text-gray-800 mb-2">Innovation</h4>
                 <p className="text-lg text-gray-600">
-                  We continuously innovate to provide efficient and user-friendly banking 
+                  We continuously innovate to provide efficient and user-friendly banking
                   solutions for a better tomorrow.
                 </p>
               </div>
@@ -63,7 +64,7 @@ export default function About() {
                 </div>
                 <h4 className="text-xl font-semibold text-gray-800 mb-2">Customer Focus</h4>
                 <p className="text-lg text-gray-600">
-                  Our customers are at the heart of everything we do. We aim to provide 
+                  Our customers are at the heart of everything we do. We aim to provide
                   services that exceed expectations.
                 </p>
               </div>
@@ -73,11 +74,11 @@ export default function About() {
           <div className="mt-16 text-center">
             <h3 className="text-3xl font-semibold text-gray-800 mb-4">Get in Touch</h3>
             <p className="text-lg text-gray-600 mb-4">
-              Have any questions about our services or want to collaborate with us? 
+              Have any questions about our services or want to collaborate with us?
               Reach out to us today!
             </p>
-            <div className='absolute mt-5 top-7/8 left-2/2 right-1/2 transform -translate-y-1/2 -translate-x-5/6'>
-            <Button />
+            <div className='relative mt-10 top-7/8 left-[210px] transform -translate-y-1/2 -translate-x-5/6'>
+              <Button />
             </div>
           </div>
         </div>
@@ -86,12 +87,10 @@ export default function About() {
   );
 }
 
-
-
 const Button = () => {
   return (
     <StyledWrapper>
-      <a href="/contact">
+      <Link to={"/contact"}>
         <button className="animated-button flex ml-80 -mr20">
           <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
@@ -102,7 +101,7 @@ const Button = () => {
             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
           </svg>
         </button>
-      </a>
+      </Link>
     </StyledWrapper>
   );
 }

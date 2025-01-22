@@ -20,7 +20,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/account/details/:id/deposit" element={<Deposit />} />
-            <Route path="/services/withdraw" element={<Withdraw />} />
+            <Route path="/account/details/:id/withdraw" element={<Withdraw />} />
             <Route path="/account/details/:id" element={<CardDetail/>}/>
             <Route path="/create-account" element={<CreateAccount />} />
           </Routes>

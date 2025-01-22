@@ -3,7 +3,7 @@ import React from 'react';
 const Contact = () => {
   return (
     <div className="flex w-full justify-center items-center min-h-screen bg-gray-900">
-      <div className="bg-gradient-to-tr from-teal-400 to-teal-400 p-1 rounded-3xl transition-shadow hover:shadow-[0_0_30px_1px_rgba(100,255,218,0.3)]">
+      <div className=" w-full bg-gradient-to-tr from-teal-400 to-teal-400 p-1 rounded-3xl transition-shadow hover:shadow-[0_0_30px_1px_rgba(100,255,218,0.3)]">
         <div className="bg-gray-900 rounded-3xl transition-transform hover:scale-95">
           <form className="flex flex-col items-center gap-4 px-8 py-4">
             <p className="text-teal-400 text-lg font-semibold mt-8">Contact our Bank</p>

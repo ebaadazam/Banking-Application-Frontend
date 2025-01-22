@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const DepositMoney = () => {
+const Deposit = () => {
   const { id } = useParams();
   const [amount, setAmount] = useState(""); // Input amount
-  const [balance, setBalance] = useState(null); // User's updated balance
   const [message, setMessage] = useState(""); // Status message
 
   const handleDeposit = async () => {
@@ -15,18 +14,16 @@ const DepositMoney = () => {
     }
 
     try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_BASE_URL}/api/banking/${id}/deposit`, // Dynamic userId
-        amount,
+      await axios.put(
+        `${import.meta.env.VITE_BASE_URL}/api/banking/${id}/deposit`,
+        { amount: parseFloat(amount) },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-
-      setBalance(response.data); // Assuming the API returns the updated balance
-      setMessage("Deposit successful!");
+      setMessage("Deposit successful! Please check your updated balance");
     } catch (error) {
       console.error("Error depositing money:", error);
       setMessage("Failed to deposit money. Please try again.");
@@ -34,29 +31,33 @@ const DepositMoney = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-md dark:bg-gray-900">
-      <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-white">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-900 to-blue-900">
+    <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 dark:bg-gray-800 dark:shadow-gray-900">
+      <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
         Deposit Money
       </h1>
+      <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-2">
+        Securely deposit money into your account
+      </p>
       <div className="mt-6">
         <label
           htmlFor="amount"
           className="block text-sm font-medium text-gray-700 dark:text-gray-300"
         >
-          Enter Amount:
+          Enter Amount
         </label>
         <input
           type="number"
           id="amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="block w-full mt-2 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:border-gray-600 dark:text-white"
           placeholder="Enter deposit amount"
         />
       </div>
       <button
         onClick={handleDeposit}
-        className="w-full mt-4 py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full mt-6 py-3 px-6 bg-gradient-to-r from-blue-900 to-blue-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transform transition duration-300 ease-in-out"
       >
         Deposit
       </button>
@@ -69,18 +70,9 @@ const DepositMoney = () => {
           {message}
         </p>
       )}
-      {balance !== null && (
-        <div className="mt-6 p-4 bg-gray-100 rounded-md dark:bg-gray-800">
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
-            Updated Balance:
-          </h2>
-          <p className="text-xl font-bold text-gray-900 dark:text-blue-400">
-            ${balance}
-          </p>
-        </div>
-      )}
     </div>
+  </div>
   );
 };
 
-export default DepositMoney;
+export default Deposit;
