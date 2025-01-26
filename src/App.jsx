@@ -8,6 +8,7 @@ import Withdraw from "./pages/Withdraw";
 import CardDetail from "./pages/CardDetail";
 import Contact from "./pages/Contact";
 import CreateAccount from "./pages/CreateAccount";
+import UpdateAccount from "./pages/UpdateAccount";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/account/details/:id/deposit" element={<Deposit />} />
             <Route path="/account/details/:id/withdraw" element={<Withdraw />} />
+            <Route path="/account/details/:id/update" element={<UpdateAccount/>}/>
             <Route path="/account/details/:id" element={<CardDetail/>}/>
             <Route path="/create-account" element={<CreateAccount />} />
           </Routes>

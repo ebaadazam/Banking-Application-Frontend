@@ -122,6 +122,11 @@ const CardDetail = () => {
                   <p>{userData.address}</p>
                 </div>
               </li>
+              <div className="flex text-center justify-center relative left-[100px]">
+              <Link to={`/account/details/${id}/update`}>
+              <p className="font-bold">Update Account</p>
+              </Link>
+              </div>
             </ul>
           </div>
           <SocialCards />
