@@ -6,6 +6,17 @@ const CardDetail = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  // Function to open the confirmation dialog
+  const openDeleteDialog = () => {
+    setShowDeleteDialog(true);
+  };
+
+  // Function to close the confirmation dialog
+  const closeDeleteDialog = () => {
+    setShowDeleteDialog(false);
+  };
 
   useEffect(() => {
     console.log("Received ID: ", id);
@@ -29,14 +40,40 @@ const CardDetail = () => {
     }
   }, [id]);
 
-
   if (loading) {
-    return <p>Loading user details...</p>;
+    return (
+      <div className="flex flex-col items-center justify-center h-screen -mt-10">
+        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-solid"></div>
+        <p className="mt-4 text-lg font-semibold text-gray-600">
+          Loading user details...
+        </p>
+      </div>
+    );
   }
+  
 
   if (error) {
     return <p>{error}</p>;
   }
+
+  // Function to handle account deletion
+  const handleDeleteAccount = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/banking/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        alert("Account deleted successfully.");
+        setShowDeleteDialog(false);
+      } else {
+        alert("Failed to delete account. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error deleting account:", error);
+      alert("An error occurred while deleting the account.");
+    }
+  };
 
   return (
     <div className="profile-card w-full h-[580px] rounded-md shadow-xl overflow-hidden z-[100] relative cursor-pointer snap-start shrink-0 bg-white flex flex-col items-center justify-center gap-3 transition-all duration-300 group">
@@ -122,13 +159,49 @@ const CardDetail = () => {
                   <p>{userData.address}</p>
                 </div>
               </li>
-              <div className="flex text-center justify-center relative left-[100px]">
-              <Link to={`/account/details/${id}/update`}>
-              <p className="font-bold">Update Account</p>
-              </Link>
-              </div>
             </ul>
           </div>
+          <div className="flex justify-center items-center space-x-16 py-4 -mt-4">
+            {/* Update Account */}
+            <Link to={`/account/details/${id}/update`} className="group">
+              <p className="text-[15px] font-semibold text-gray-600 transition duration-200 group-hover:text-blue-600">
+                Update Account
+              </p>
+            </Link>
+
+            {/* Delete Account */}
+            <p
+              onClick={openDeleteDialog}
+              className="text-[15px] font-semibold text-gray-600 transition duration-200 cursor-pointer group-hover:text-red-600"
+            >
+              Delete Account
+            </p>
+          </div>
+
+
+          {showDeleteDialog && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+              <div className="bg-white rounded-lg p-6 w-96 shadow-lg">
+                <h2 className="text-lg font-semibold mb-4">
+                  Are you sure you want to delete your account permanently?
+                </h2>
+                <div className="flex justify-end gap-4">
+                  <button
+                    onClick={closeDeleteDialog}
+                    className="bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleDeleteAccount}
+                    className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+                  >
+                    Yes, Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           <SocialCards />
 
           {/* Buttons Section */}
