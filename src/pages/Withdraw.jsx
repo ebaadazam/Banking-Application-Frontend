@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Withdraw = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [amount, setAmount] = useState("");
   const [message, setMessage] = useState("");
 
@@ -23,10 +25,13 @@ const Withdraw = () => {
           },
         }
       );
-      setMessage("Withdrawal successful! Please check your updated balance");
+      toast.success(`${amount} withdrawn from bank account!`);
+      setTimeout(() => {
+        navigate(`/account/details/${id}`);
+    }, 3000);
     } catch (error) {
       console.error("Error withdrawing money:", error);
-      setMessage("Failed to withdraw money. Please try again.");
+      toast.error("Failed to withdraw money. Please try again.");
     }
   };
 
@@ -61,6 +66,7 @@ const Withdraw = () => {
         >
           Withdraw
         </button>
+         <Toaster position="top-center" />
         {message && (
           <p
             className={`mt-4 text-center font-medium ${

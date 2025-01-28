@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const UpdateAccount = () => {
-    const { id } = useParams(); // Extract id from the URL
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [error, setError] = useState('');
 
     const [formData, setFormData] = useState({
         accountHolderName: '',
@@ -17,13 +20,11 @@ const UpdateAccount = () => {
         accountStatus: '',
         imageUrl: null,
     });
-    
-    const [error, setError] = useState('');
-    
+        
     useEffect(() => {
         const fetchAccountDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/banking/${id}`); // Use id in API request
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/banking/${id}`); // Use id in API request
                 setFormData(response.data); // assuming response.data contains the account details
             } catch (error) {
                 console.error('Error fetching account details:', error);
@@ -70,9 +71,12 @@ const UpdateAccount = () => {
         setError('');
 
         try {
-            const response = await axios.put(`http://localhost:8080/api/banking/${id}`, formData); // Use id in PUT request
+            const response = await axios.put(`${import.meta.env.VITE_BASE_URL}/api/banking/${id}`, formData); // Use id in PUT request
             console.log('Account Updated Successfully:', response.data);
-            alert('Account updated successfully!');
+            toast.success('Account updated successfully!');
+            setTimeout(() => {
+                navigate(`/account/details/${id}`);
+            }, 3000);
         } catch (error) {
             console.error('Error updating account:', error);
             alert('Error updating account. Please try again.');
@@ -80,6 +84,8 @@ const UpdateAccount = () => {
     };
 
     return (
+        <>
+        <Toaster position="top-center" />
         <form onSubmit={handleSubmit} className="mx-auto max-w-full bg-white rounded-md shadow-lg drop-shadow-md">
             <div className="px-4 py-3 flex justify-center">
                 <div>
@@ -234,6 +240,7 @@ const UpdateAccount = () => {
                 </div>
             </div>
         </form>
+        </>
     );
 };
 
