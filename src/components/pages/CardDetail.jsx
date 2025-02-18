@@ -327,29 +327,30 @@ const CardDetail = () => {
   return (
     <>
       <Toaster position="top-center" />
-      <div className="flex h-screen w-screen p-6 bg-gray-50">
+      <div className="flex h-screen w-full p-6 bg-gray-50 bg-fixed">
         {/* Left Section */}
         <div className="w-7/12 p-4 bg-white shadow rounded-l-2xl">
           <div className="flex flex-col items-center">
             {/* Image and Name */}
             <div className="flex items-start justify-start gap-4 mb-6 self-start ml-8">
-  <img
-    src={userData.imageUrl ? userData.imageUrl : "https://loremflickr.com/150/150/portrait"}
-    alt="Account Holder"
-    className="rounded-full w-28 h-28"
-  />
-  <div className="-mt-2">
-    <h2 className="text-2xl font-semibold relative top-2">{userData.accountHolderName}</h2>
-    <p className="text-sm text-gray-500 opacity-70 mt-2">{userData.designation}</p>
-  </div>
-</div>
+              <img
+                src={userData.imageUrl ? userData.imageUrl : "https://loremflickr.com/150/150/portrait"}
+                alt="Account Holder"
+                className="rounded-full w-28 h-28"
+              />
+              <div className="-mt-2">
+                <h2 className="text-2xl font-semibold relative top-2">{userData.accountHolderName}</h2>
+                <p className="text-sm text-gray-500 opacity-70 mt-2">{userData.designation}</p>
+              </div>
+            </div>
 
 
             {/* Account Information Section */}
             <div className="w-full max-w-2xl bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-start justify-between gap-8">
-                <div className="flex-1">
-                  <ul className="flex flex-col items-start gap-4 has-[:last]:border-b-0 *:inline-flex *:gap-2 *:items-center *:justify-center *:border-b-[1.5px] *:border-b-stone-700 *:border-dotted *:text-xs *:font-semibold *:text-[#434955] pb-3">
+              <div className="flex items-start justify-between gap-8 -mt-5">
+                <div className="flex-1 -ml-5">
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">Account Details</h2>
+                  <ul className="flex flex-col items-start gap-4 has-[:last]:border-b-0 *:inline-flex *:gap-2 *:items-center *:justify-center *:border-b-[1.5px] *:border-b-stone-700 *:border-dotted *:text-sm *:font-semibold *:text-[#434955] pb-3">
                     <li>
                       <svg id="map" viewBox="0 0 16 16" className="fill-stone-700 group-hover:fill-[#58b0e0]" height={15} width={15} xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 0C5.2 0 3 2.2 3 5s4 11 5 11 5-8.2 5-11-2.2-5-5-5zm0 8C6.3 8 5 6.7 5 5s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z" />
@@ -388,18 +389,18 @@ const CardDetail = () => {
                     </li>
                   </ul>
                 </div>
-                
-                <div className="flex-1 border-l border-gray-200 pl-8">
+
+                <div className="flex-1 border-gray-200 pl-8">
                   <div className="space-y-4">
-                    <h2 className="text-xl font-semibold text-gray-800">Debit Card Information</h2>
-                    <DebitCard/>
+                    <h2 className="text-xl font-semibold text-gray-800">Card Details</h2>
+                    <DebitCard />
                   </div>
                 </div>
               </div>
             </div>
-            
+
             {/* Deposit and Withdraw button */}
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-4 mt-3">
               <Link to={`/account/details/${id}/deposit`}>
                 <button className="px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg">Deposit</button>
               </Link>
@@ -415,8 +416,8 @@ const CardDetail = () => {
 
         {/* Right Section */}
         <div className="w-5/12 p-4 bg-white shadow rounded-r-2xl">
-          <div className="bg-white shadow-lg rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Personal Information</h3>
+          <div className="bg-white  rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4 -mt-5">Personal Information</h2>
             <div className="space-y-2">
               <p className="flex items-center text-gray-700 text-sm">
                 <FaMapMarkerAlt className="text-brandPrimary mr-2" />
@@ -448,7 +449,7 @@ const CardDetail = () => {
 
           {/* Buttons Section */}
           <StyledWrapper>
-            <div className="cards mt-4">
+            <div className="cards">
               <div className="card bg-blue-900" onClick={() => navigate(`/account/details/${id}/update`)}>
                 <p className="tip">Update Account</p>
                 <p className="second-text">Update your account information</p>
