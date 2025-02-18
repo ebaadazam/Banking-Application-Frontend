@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 const Card = () => {
   const [accounts, setAccounts] = useState([]);
-  const [loading, setLoading] = useState(true); // To handle loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAccounts = async () => {
@@ -13,7 +13,6 @@ const Card = () => {
         const data = await response.json();
         setAccounts(data);
         setLoading(false);
-        console.log('Unique Accounts:', uniqueData);
       } catch (error) {
         console.error('Error fetching user accounts:', error);
         setLoading(false);

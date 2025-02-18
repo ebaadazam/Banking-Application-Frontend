@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Deposit from "./pages/Deposit";
-import Withdraw from "./pages/Withdraw";
-import CardDetail from "./pages/CardDetail";
-import Contact from "./pages/Contact";
-import CreateAccount from "./pages/CreateAccount";
-import UpdateAccount from "./pages/UpdateAccount";
+import Navbar from "./components/common/Navbar";
+import About from "./components/pages/About";
+import Deposit from "./components/pages/operations/Deposit";
+import Withdraw from "./components/pages/operations/Withdraw";
+import CardDetail from "./components/pages/CardDetail";
+import Contact from "./components/pages/Contact";
+import CreateAccount from "./components/pages/account/CreateAccount";
+import UpdateAccount from "./components/pages/account/UpdateAccount";
+import Home from "./components/home/Home";
 
 const App = () => {
   return (

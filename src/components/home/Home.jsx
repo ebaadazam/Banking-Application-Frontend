@@ -1,9 +1,8 @@
 import React from 'react'
-import Card from '../HomePage/Card'
-import DocIcon from '../HomePage/DocIcon'
+import Card from './Card'
 import { useSprings, animated } from '@react-spring/web';
 import { useEffect, useRef, useState } from 'react';
-import Footer from '../components/Footer';
+import Footer from '../common/Footer';
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -14,7 +13,9 @@ function Home() {
   return (
     <>
       <div className="container mx-auto px-4 py-8">
+   
         <div className="flex items-center justify-between mb-6">
+        
           <h1 className="text-4xl ml-6 text-gray-700 opacity-80 font-bold">
             <AnimatedHomeText
               text="Welcome to Your Digital Bank!"
