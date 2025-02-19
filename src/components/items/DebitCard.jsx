@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DebitCard = () => {
+const DebitCard = ({userData}) => {
   return (
     <StyledWrapper>
       <div className="flip-card">
@@ -59,10 +59,10 @@ const DebitCard = () => {
               OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
               MDowMIXeN6gAAAAASUVORK5CYII=" />
             </svg>
-            <p className="number">9759 2484 5269 6576</p>
+            <p className="number">{userData?.debitCard?.cardNumber || "N/A"}</p>
             <p className="valid_thru">VALID THRU</p>
-            <p className="date_8264">1 2 / 2 4</p>
-            <p className="name">EBAAD AZAM</p>
+            <p className="date_8264">{userData?.debitCard?.validity || "N/A"}</p>
+            <p className="name">{userData?.debitCard?.cardName || "N/A"}</p>
           </div>
           <div className="flip-card-back">
             <div className="strip" />
