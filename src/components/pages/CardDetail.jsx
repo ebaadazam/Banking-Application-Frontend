@@ -5,6 +5,7 @@ import DebitCard from "../items/DebitCard";
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaUser, FaShareSquare } from "react-icons/fa";
 import toast, { Toaster } from 'react-hot-toast';
 import styled from 'styled-components';
+import axios from "axios";
 
 const CardDetail = () => {
   const { id } = useParams();
@@ -41,6 +42,43 @@ const CardDetail = () => {
       fetchUserData();
     }
   }, [id]);
+
+  // added
+  // useEffect(() => {
+  //   if (userData && userData.length > 0) {
+  //     const fetchImages = async () => {
+  //       try {
+  //         const updatedData = await Promise.all(
+  //           userData.map(async (item) => {
+  //             try {
+  //               const response = await fetch(
+  //                 `${import.meta.env.VITE_BASE_URL}/api/banking/${item.id}/image`
+  //               );
+  
+  //               if (!response.ok) {
+  //                 throw new Error(`HTTP error! status: ${response.status}`);
+  //               }
+  
+  //               const blob = await response.blob(); // Convert to blob
+  //               const imageUrl = URL.createObjectURL(blob); // Create URL for blob
+  
+  //               return { ...item, imageUrl };
+  //             } catch (error) {
+  //               console.error("Error fetching image for item:", item.id, error);
+  //               return { ...item, imageUrl: "" }; // Fallback on error
+  //             }
+  //           })
+  //         );
+  //         setUserData(updatedData);
+  //       } catch (err) {
+  //         console.error("Error in fetchImages:", err);
+  //       }
+  //     };
+  
+  //     fetchImages();
+  //   }
+  // }, [userData]);
+  
 
   const handleDeleteAccount = async () => {
     try {
@@ -88,7 +126,7 @@ const CardDetail = () => {
             {/* Image and Name */}
             <div className="flex items-start justify-start gap-4 mb-6 self-start ml-8">
               <img
-                src={userData.imageUrl ? userData.imageUrl : "https://loremflickr.com/150/150/portrait"}
+                src={userData.imageUrl ? userData.imageUrl : "https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg"}
                 alt="Account Holder"
                 className="rounded-full w-28 h-28"
               />

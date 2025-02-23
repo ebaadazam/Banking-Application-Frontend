@@ -72,10 +72,24 @@ const UpdateAccount = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+
+        // Define the required top-level fields
+        const requiredFields = [
+            'accountHolderName',
+            'phoneNumber',
+            'email',
+            'address',
+            'designation',
+            'accountNumber',
+            'ifscCode',
+            'accountType',
+            'accountStatus',
+        ];
+
         // Check for missing required fields
-        for (const key in formData) {
-            if (key !== 'imageUrl' && !formData[key]) {
-                setError(`Please fill in the ${key.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`);
+        for (const field of requiredFields) {
+            if (!formData[field]) {
+                setError(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`);
                 return;
             }
         }
@@ -149,16 +163,16 @@ const UpdateAccount = () => {
                         className="w-full ring-1 ring-gray-400 rounded-md text-md px-2 py-2 outline-none bg-gray-100 focus:placeholder-gray-500"
                         required
                     />
-                        <input
-                            type="text"
-                            name="designation"
-                            value={formData.designation}
-                            onChange={handleChange}
-                            placeholder="Designation"
-                            className="w-full ring-1 ring-gray-400 rounded-md text-md px-2 py-2 outline-none bg-gray-100 focus:placeholder-gray-500"
-                            required
-                        />
-                          <div>
+                    <input
+                        type="text"
+                        name="designation"
+                        value={formData.designation}
+                        onChange={handleChange}
+                        placeholder="Designation"
+                        className="w-full ring-1 ring-gray-400 rounded-md text-md px-2 py-2 outline-none bg-gray-100 focus:placeholder-gray-500"
+                        required
+                    />
+                    <div>
                         <h1 className="mt-6">Gender</h1>
                         <div className="mt-1 flex space-x-3">
                             <label htmlFor="male" className="flex-1 flex space-x-2 justify-between items-center rounded-md px-2 py-1 border border-gray-400 focus:placeholder-gray-500">
