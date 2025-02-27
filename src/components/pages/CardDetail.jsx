@@ -7,10 +7,26 @@ import toast, { Toaster } from 'react-hot-toast';
 import styled from 'styled-components';
 import axios from "axios";
 
+const dummyUserData = {
+  accountHolderName: "John Doe",
+  designation: "Software Engineer",
+  accountNumber: "1234567890",
+  ifscCode: "ABCD0123456",
+  branchName: "Downtown Branch",
+  balance: "$10,000",
+  accountType: "Savings",
+  accountStatus: "Active",
+  address: "123 Main Street, Cityville, USA",
+  phoneNumber: "+1 234 567 8901",
+  email: "johndoe@example.com",
+  gender: "Male",
+  imageUrl: "https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg"
+};
+
 const CardDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(dummyUserData);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -32,7 +48,7 @@ const CardDetail = () => {
         setUserData(data);
       } catch (err) {
         console.error("Error fetching user data:", err);
-        setError("Unable to fetch user details. Please try again later.");
+        setError("Unable to fetch user details. Showing dummy data.");
       } finally {
         setLoading(false);
       }
@@ -54,14 +70,14 @@ const CardDetail = () => {
   //               const response = await fetch(
   //                 `${import.meta.env.VITE_BASE_URL}/api/banking/${item.id}/image`
   //               );
-  
+
   //               if (!response.ok) {
   //                 throw new Error(`HTTP error! status: ${response.status}`);
   //               }
-  
+
   //               const blob = await response.blob(); // Convert to blob
   //               const imageUrl = URL.createObjectURL(blob); // Create URL for blob
-  
+
   //               return { ...item, imageUrl };
   //             } catch (error) {
   //               console.error("Error fetching image for item:", item.id, error);
@@ -74,11 +90,11 @@ const CardDetail = () => {
   //         console.error("Error in fetchImages:", err);
   //       }
   //     };
-  
+
   //     fetchImages();
   //   }
   // }, [userData]);
-  
+
 
   const handleDeleteAccount = async () => {
     try {
@@ -125,8 +141,13 @@ const CardDetail = () => {
           <div className="flex flex-col items-center">
             {/* Image and Name */}
             <div className="flex items-start justify-start gap-4 mb-6 self-start ml-8">
-              <img
+              {/* <img
                 src={userData.imageUrl ? userData.imageUrl : "https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg"}
+                alt="Account Holder"
+                className="rounded-full w-28 h-28"
+              /> */}
+              <img
+                src={userData.imageUrl ? `${import.meta.env.VITE_BASE_URL}${userData.imageUrl}` : "https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg"}
                 alt="Account Holder"
                 className="rounded-full w-28 h-28"
               />
@@ -140,7 +161,7 @@ const CardDetail = () => {
             <div className="w-full max-w-2xl bg-white p-6 rounded-lg shadow-sm">
               <div className="flex items-start justify-between gap-8 -mt-5">
                 <div className="flex-1 -ml-5">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">Account Details</h2>
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Account Details</h2>
                   <ul className="flex flex-col items-start gap-4 has-[:last]:border-b-0 *:inline-flex *:gap-2 *:items-center *:justify-center *:border-b-[1.5px] *:border-b-stone-700 *:border-dotted *:text-sm *:font-semibold *:text-[#434955] pb-3">
                     <li>
                       <svg id="map" viewBox="0 0 16 16" className="fill-stone-700 group-hover:fill-[#58b0e0]" height={15} width={15} xmlns="http://www.w3.org/2000/svg">
