@@ -2,21 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 const Card = () => {
+
+  const dummyAccount = {
+    id: 1,
+    accountHolderName: "User",
+    accountStatus: "Active",
+    lastUpdatedDate: "2024-02-27"
+  };
+
+   // Create an array of 9 identical dummy accounts
+   const fallbackData = Array(9).fill(dummyAccount);
+
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+   useEffect(() => {
     const fetchAccounts = async () => {
       try {
         setLoading(true);
         const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/banking`);
+        
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
         const data = await response.json();
         setAccounts(data);
-        setLoading(false);
       } catch (error) {
-        console.error('Error fetching user accounts:', error);
-        setLoading(false);
-      } finally{
+        console.error("Error fetching user accounts:", error);
+        setAccounts(fallbackData); // Show 9 identical dummy cards if API call fails
+      } finally {
         setLoading(false);
       }
     };
